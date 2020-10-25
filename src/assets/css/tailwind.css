@@ -8,3 +8,19 @@ body {
 	width: 100%;
 	overflow-x: hidden;
 }
+
+.card-product .flex {
+	flex: 1;
+}
+
+.card-product .pro_code {
+	flex: 2;
+}
+
+.top-bar .field {
+	flex: 1;
+}
+
+.top-bar .field.code {
+	flex: 2;
+}

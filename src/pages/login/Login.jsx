@@ -6,12 +6,13 @@ import { useDispatch } from "react-redux";
 const Login = () => {
 	const [name, setName] = useState("");
 	const [password, setPassword] = useState("");
+	const [loading, setLoading] = useState(false);
 
 	const history = useHistory();
-	const dispatch = useDispatch();
 
 	const submit = (e) => {
 		e.preventDefault();
+		setLoading(true);
 
 		const reqLogin = async () => {
 			try {
@@ -29,21 +30,21 @@ const Login = () => {
 
 				const res = await login;
 				if (res) {
-					dispatch({ type: "SET_USER_TOKEN", value: res.token });
-
+					
 					const userCookie = {
 						userToken: res.token,
 					};
 
 					const expires = new Date(
-						new Date().getTime() + 1 * 24 * 60 * 60 * 1000
+						new Date().getTime() + 1 * 5 * 60 * 60 * 1000
 					);
 
 					document.cookie = `DALENTA_USER=${JSON.stringify(
 						userCookie
-					)}; expires=${expires.toUTCString()}`;
+					)}; expires=${expires}`;
 
-					history.push("/home");
+					history.push('/home');
+
 				}
 			} catch (error) {
 				console.log(error);
@@ -87,8 +88,9 @@ const Login = () => {
 					<button
 						type="submit"
 						className="text-white w-full text-center py-2 mt-5 rounded-lg bg-indigo-1000 hover:bg-indigo-900"
+						onClick={submit}
 					>
-						LOGIN
+						{loading ? 'WAIT..' : 'LOGIN'}
 					</button>
 				</form>
 			</div>

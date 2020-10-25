@@ -19514,8 +19514,20 @@ body {
   overflow-x: hidden;
 }
 
-.top-bar .filter {
-  width: 30%;
+.card-product .flex {
+  flex: 1;
+}
+
+.card-product .pro_code {
+  flex: 2;
+}
+
+.top-bar .field {
+  flex: 1;
+}
+
+.top-bar .field.code {
+  flex: 2;
 }
 
 @media (min-width: 640px) {

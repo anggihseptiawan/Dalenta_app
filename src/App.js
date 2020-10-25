@@ -2,10 +2,10 @@ import React from "react";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 import { createBrowserHistory } from "history";
 
-import Login from "./pages/login/Login";
-import Home from "./pages/home/Home";
-import Variant from "./pages/submenu/Variant";
-import Categories from "./pages/submenu/Categories";
+import Login from "./pages/Login/Login";
+import Home from "./pages/Home/Home";
+import Variant from "./pages/Submenu/Variant";
+import Categories from "./pages/Submenu/Categories";
 
 function App() {
 	const userCookie = document.cookie;
@@ -34,7 +34,7 @@ function App() {
 				<Route
 					exact
 					path="/login"
-					render={() => (ourCookie ? <Redirect to="/" /> : <Login />)}
+					component={Login}
 				/>
 				<Route exact path="/home" component={Home} />
 				<Route exact path="/variant" component={Variant} />
