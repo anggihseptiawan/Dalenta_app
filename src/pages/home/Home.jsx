@@ -12,7 +12,7 @@ const Home = () => {
 
 	return (
 		<div className="pt-36">
-			<TopBar />
+			<TopBar category="product" />
 			<SideBar />
 			<Product />
 			{state.modal.show && <ModalBox />}

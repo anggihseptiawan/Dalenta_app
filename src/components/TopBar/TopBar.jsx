@@ -6,7 +6,7 @@ import { ReactComponent as Search } from "../../assets/images/search.svg";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-const TopBar = () => {
+const TopBar = ({category}) => {
 	const [subMenu, setSubMenu] = useState(false);
 	const dispatch = useDispatch();
 
@@ -74,27 +74,63 @@ const TopBar = () => {
 				</div>
 			</div>
 			<div className="flex justify-between pt-2 mt-4 border-t border-gray-900">
-				<div className="field code">
-					<span>Code</span>
-				</div>
-				<div className="field flex ml-2">
-					<span>Product name</span>
-				</div>
-				<div className="field flex ml-2">
-					<span>Variants</span>
-				</div>
-				<div className="field flex ml-2">
-					<span>Outlets</span>
-				</div>
-				<div className="field flex justify-center">
-					<span>Category</span>
-				</div>
-				<div className="field flex justify-center">
-					<span>Price</span>
-				</div>
-				<div className="field flex justify-center">
-					<span>Cost</span>
-				</div>
+				{
+					category === 'product' && 
+					<>
+						<div className="field code">
+							<span>Code</span>
+						</div>
+						<div className="field flex ml-2">
+							<span>Product name</span>
+						</div>
+						<div className="field flex ml-2">
+							<span>Variants</span>
+						</div>
+						<div className="field flex ml-2">
+							<span>Outlets</span>
+						</div>
+						<div className="field flex justify-center">
+							<span>Category</span>
+						</div>
+						<div className="field flex justify-center">
+							<span>Price</span>
+						</div>
+						<div className="field flex justify-center">
+							<span>Cost</span>
+						</div>
+					</>
+				}
+				{
+					category === 'variant' && 
+					<>
+						<div className="field code">
+							<span>Variant name</span>
+						</div>
+						<div className="field flex ml-2">
+							<span>Product assigned</span>
+						</div>
+						<div className="field flex ml-2">
+							<span>Variant options</span>
+						</div>
+						<div className="field flex ml-2">
+							<span>Mode</span>
+						</div>
+						<div className="field flex justify-center">
+							<span>Quick actions</span>
+						</div>
+					</>
+				}
+				{
+					category === 'categories' && 
+					<>
+						<div className="field code">
+							<span>Category name</span>
+						</div>
+						<div className="field flex ml-2">
+							<span>Assigned product</span>
+						</div>
+					</>
+				}
 			</div>
 		</div>
 	);

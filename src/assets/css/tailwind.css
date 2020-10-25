@@ -24,3 +24,12 @@ body {
 .top-bar .field.code {
 	flex: 2;
 }
+
+.card-product .var_price {
+	flex: 2;
+}
+
+/* MODAL BOX */
+.modal-wrapper {
+	background: rgba(0,0,0,.7);
+}

@@ -19530,6 +19530,16 @@ body {
   flex: 2;
 }
 
+.card-product .var_price {
+  flex: 2;
+}
+
+/* MODAL BOX */
+
+.modal-wrapper {
+  background: rgba(0,0,0,.7);
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

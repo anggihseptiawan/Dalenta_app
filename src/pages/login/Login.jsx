@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
 
 const Login = () => {
 	const [name, setName] = useState("");
@@ -30,21 +29,19 @@ const Login = () => {
 
 				const res = await login;
 				if (res) {
-					
 					const userCookie = {
 						userToken: res.token,
 					};
 
 					const expires = new Date(
-						new Date().getTime() + 1 * 5 * 60 * 60 * 1000
+						new Date().getTime() + 1 * 2 * 60 * 60 * 1000
 					);
 
 					document.cookie = `DALENTA_USER=${JSON.stringify(
 						userCookie
 					)}; expires=${expires}`;
 
-					history.push('/home');
-
+					history.push("/home");
 				}
 			} catch (error) {
 				console.log(error);
@@ -90,7 +87,7 @@ const Login = () => {
 						className="text-white w-full text-center py-2 mt-5 rounded-lg bg-indigo-1000 hover:bg-indigo-900"
 						onClick={submit}
 					>
-						{loading ? 'WAIT..' : 'LOGIN'}
+						{loading ? "WAIT.." : "LOGIN"}
 					</button>
 				</form>
 			</div>

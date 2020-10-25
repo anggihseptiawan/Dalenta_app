@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import CardProduct from "../../components/CardProduct/CardProduct";
 import Axios from "../../utils/axios";
+import { useHistory } from "react-router-dom";
 
 const Product = () => {
 	const [products, setProducts] = useState(null);
+	const history = useHistory();
 
 	useEffect(() => {
 		const getAllProduct = async () => {
@@ -25,7 +27,8 @@ const Product = () => {
 				const data = await Axios.get("/product");
 				setProducts(data.data.products);
 			} catch (error) {
-				console.log(error);
+				console.error(error.response.status);
+				if (error.response.status === 401) history.push("/login");
 			}
 		};
 
