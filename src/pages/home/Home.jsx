@@ -8,7 +8,6 @@ import ModalBox from "../../components/ModalBox/ModalBox";
 
 const Home = () => {
 	const state = useSelector((state) => state);
-	console.log(state);
 
 	return (
 		<div className="pt-36">

@@ -6,18 +6,10 @@ import Login from "./pages/Login/Login";
 import Home from "./pages/Home/Home";
 import Variant from "./pages/Submenu/Variant";
 import Categories from "./pages/Submenu/Categories";
+import useCookie from "./utils/hook/useCookie";
 
 function App() {
-	const userCookie = document.cookie;
-	const findCookie = userCookie
-		?.split(";")
-		.find((cookie) => cookie.startsWith("DALENTA_USER"));
-
-	let ourCookie;
-	if (findCookie) {
-		const strCookie = findCookie?.split("=")[1];
-		ourCookie = JSON.parse(strCookie);
-	}
+	const ourCookie = useCookie();
 
 	const history = createBrowserHistory({ basename: process.env.PUBLIC_URL });
 
@@ -27,14 +19,33 @@ function App() {
 				<Route
 					exact
 					path="/"
+					// render={() =>
+					// 	ourCookie ? <Home /> : <Redirect to="/login" />
+					// }
+					component={Home}
+				/>
+				<Route exact path="/login" component={Login} />
+				<Route
+					exact
+					path="/home"
 					render={() =>
 						ourCookie ? <Home /> : <Redirect to="/login" />
 					}
 				/>
-				<Route exact path="/login" component={Login} />
-				<Route exact path="/home" component={Home} />
-				<Route exact path="/variant" component={Variant} />
-				<Route exact path="/categories" component={Categories} />
+				<Route
+					exact
+					path="/variant"
+					render={() =>
+						ourCookie ? <Variant /> : <Redirect to="/login" />
+					}
+				/>
+				<Route
+					exact
+					path="/categories"
+					render={() =>
+						ourCookie ? <Categories /> : <Redirect to="/login" />
+					}
+				/>
 			</Switch>
 		</Router>
 	);

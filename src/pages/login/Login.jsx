@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ history }) => {
 	const [name, setName] = useState("");
 	const [password, setPassword] = useState("");
 	const [loading, setLoading] = useState(false);
-
-	const history = useHistory();
 
 	const submit = (e) => {
 		e.preventDefault();
@@ -41,7 +39,7 @@ const Login = () => {
 						userCookie
 					)}; expires=${expires}`;
 
-					history.push("/home");
+					history.push("/");
 				}
 			} catch (error) {
 				console.log(error);
@@ -95,4 +93,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default withRouter(Login);

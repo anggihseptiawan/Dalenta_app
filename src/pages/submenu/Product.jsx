@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import CardProduct from "../../components/CardProduct/CardProduct";
 import Axios from "../../utils/axios";
-import { useHistory } from "react-router-dom";
 
 const Product = () => {
 	const [products, setProducts] = useState(null);
-	const history = useHistory();
 
 	useEffect(() => {
 		const getAllProduct = async () => {
@@ -15,7 +13,7 @@ const Product = () => {
 					?.split(";")
 					.find((cookie) => cookie.startsWith("DALENTA_USER"));
 
-				let ourCookie;
+				let ourCookie = "sometoken";
 				if (findCookie) {
 					const strCookie = findCookie?.split("=")[1];
 					ourCookie = JSON.parse(strCookie);
@@ -27,8 +25,8 @@ const Product = () => {
 				const data = await Axios.get("/product");
 				setProducts(data.data.products);
 			} catch (error) {
-				console.error(error.response.status);
-				if (error.response.status === 401) history.push("/login");
+				console.error(error);
+				// if (error.response.status === 401) history.push("/login");
 			}
 		};
 
