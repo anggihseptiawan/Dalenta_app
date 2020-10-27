@@ -2,12 +2,12 @@ import React from "react";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 import { createBrowserHistory } from "history";
 
+import Login from "./pages/Login/Login";
 import Home from "./pages/Home/Home";
-
 import Variant from "./pages/Submenu/Variant";
 import Categories from "./pages/Submenu/Categories";
+
 import useCookie from "./utils/hook/useCookie";
-import Login from "./pages/Login/Login";
 
 function App() {
 	const ourCookie = useCookie();
