@@ -10,14 +10,12 @@ const ModalBox = () => {
 		cost: "",
 		price: "",
 		category: "",
-		variants: [25],
+		variants: "",
 		image: "",
 	});
 	const [image, setImage] = useState("");
 	const [categories, setCategories] = useState(null);
 	const [loading, setLoading] = useState(false);
-
-	console.log(form);
 
 	const uploadImage = (e) => {
 		setImage(e.target.files[0]);
@@ -28,39 +26,38 @@ const ModalBox = () => {
 	const submit = (e) => {
 		e.preventDefault();
 		setLoading(true);
-		const formData = new FormData();
+		let formData = new FormData();
 		formData.append("name", form.name);
 		formData.append("code", form.code);
 		formData.append("cost", form.cost);
 		formData.append("price", form.price);
 		formData.append("category", form.category);
-		formData.append("variants", form.variants);
+		formData.append("variants", "[25]");
 		formData.append("image", form.image);
+
+		// formData.forEach((data) => console.log(data));
 
 		const createProduct = async () => {
 			try {
-				const postProduct = await axios(
+				const postProduct = await fetch(
 					"http://f-test.dalenta.tech/product",
 					{
 						method: "POST",
-						data: formData,
 						headers: {
-							"Content-Type": "multipart/form-data",
 							"x-access-token": ourCookie.userToken,
 						},
+						body: formData,
 					}
 				);
 
-				console.log(formData);
-
 				const res = await postProduct;
-				if (res) {
+				if (res.response.status === 200) {
 					setLoading(false);
 					console.log(res);
 				}
 			} catch (error) {
 				setLoading(false);
-				console.log(error);
+				console.log(formData);
 			}
 		};
 
